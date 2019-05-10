@@ -57,7 +57,6 @@ extension ViewController{ // Api defintion
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
                     do {
-                        var places = try JSONDecoder().decode([Place].self, from: data)
                         self.placesData = try JSONDecoder().decode([Place].self, from: data)
                         self.places.onNext(self.placesData)
                     } catch let error {
