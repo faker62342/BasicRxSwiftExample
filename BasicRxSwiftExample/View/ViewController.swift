@@ -55,7 +55,10 @@ extension ViewController{ // Bindings
                 }
                 self?.present(SFSafariViewController(url: url), animated: true)
             }).disposed(by: disposeBag)
-    }
+        
+        //Bind searchBar
+
     
+    }
 }
 

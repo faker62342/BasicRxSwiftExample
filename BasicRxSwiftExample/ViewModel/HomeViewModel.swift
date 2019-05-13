@@ -12,7 +12,9 @@ import RxCocoa
 
 class HomeViewModel {
     
-    let places: PublishSubject<[Place]> = PublishSubject<[Place]>() //PublishSubject let us retrieve any kind of event
+    let places: BehaviorRelay<[Place]> = BehaviorRelay<[Place]>(value: []) //PublishSubject let us retrieve any kind of event
+    
+    let shownPlaces: BehaviorRelay<[Place]> = BehaviorRelay<[Place]>(value: []) //retrieve only the searched places
     
     
     var placesData: [Place] = [Place]() // Array to store data from json api
@@ -24,7 +26,7 @@ class HomeViewModel {
                 if let data = data {
                     do {
                         self.placesData = try JSONDecoder().decode([Place].self, from: data)
-                        self.places.onNext(self.placesData)
+                        self.places.accept(self.placesData)
                     } catch let error {
                         print(error)
                     }
